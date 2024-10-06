@@ -15,8 +15,8 @@ public class ProgramaPrincipal {
 	//Creación de los componentes propios del ejemplo.
 	private static EstadoDelSistema modelo;		
 	private static ContadoresEstadisticos contadores;
-	private static GeneradorDeReportesEjemplo reporte;
-	private static LibreriaDeRutinasEjemplo libreria;
+	private static GeneradorDeReportes reporte;
+	private static LibreriaDeRutinas libreria;
 	private static ListaDeEventos eventos;
 		
 	public static void main(String[] args) {

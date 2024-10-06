@@ -10,7 +10,7 @@ import modeloejemplo.componentespropios.LibreriaDeRutinasEjemplo;
 
 public class RutinaDeInicializacion {
 	
-	public void run(RelojDeSimulacion reloj, EstadoDelSistema modelo, ContadoresEstadisticos contadores, ListaDeEventos eventos, LibreriaDeRutinasEjemplo libreria) {
+	public void run(RelojDeSimulacion reloj, EstadoDelSistema modelo, ContadoresEstadisticos contadores, ListaDeEventos eventos, LibreriaDeRutinas libreria) {
 		
 		//Setear el reloj de simulación en 0.
 		reloj.inicializar();

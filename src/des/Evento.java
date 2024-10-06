@@ -29,6 +29,6 @@ public abstract class Evento {
 	
 	/* Subprograma que actualiza el estado del sistema  cuando un tipo particular de evento tiene lugar. */
 
-	public abstract void rutinaDeEvento(EstadoDelSistema modelo, ContadoresEstadisticos contadores, ListaDeEventos eventos, LibreriaDeRutinasEjemplo libreria);
+	public abstract void rutinaDeEvento(EstadoDelSistema modelo, ContadoresEstadisticos contadores, ListaDeEventos eventos, LibreriaDeRutinas libreria);
 
 }

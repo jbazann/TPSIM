@@ -1,9 +1,6 @@
 package modeloejemplo.eventos;
 
-import des.ContadoresEstadisticos;
-import des.EstadoDelSistema;
-import des.Evento;
-import des.ListaDeEventos;
+import des.*;
 import modeloejemplo.componentespropios.LibreriaDeRutinasEjemplo;
 import modeloejemplo.estadodelsistema.ModeloDelEjemplo;
 import modeloejemplo.estadodelsistema.Solicitud;
@@ -16,8 +13,9 @@ public class EventoArribarACola extends Evento {
 
 	@Override
 	public void rutinaDeEvento(EstadoDelSistema modelo, ContadoresEstadisticos contadores, ListaDeEventos eventos,
-			LibreriaDeRutinasEjemplo libreria) {
+			LibreriaDeRutinas libreriaAbstract) {
 				
+		LibreriaDeRutinasEjemplo libreria = (LibreriaDeRutinasEjemplo) libreriaAbstract;
 		ModeloDelEjemplo modeloActual = (ModeloDelEjemplo) modelo;
 		
 		//Agendar el próximo arribo de solicitud.

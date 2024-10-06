@@ -1,0 +1,17 @@
+Cambiamos en programa principal:
+
+    GeneradorDeReportesEjemplo reporte;
+    LibreriaDeRutinasEjemplo libreria;
+
+Por:
+
+    GeneradorDeReportes reporte;
+    LibreriaDeRutinas libreria;
+
+Para poder desacoplar nuestro modelo del ejemplo.
+Esto implica hacer el mismo cambio de clase en:
+
+    Evento::rutinaDeEvento
+    RutinaDeInicializacion::run
+
+Nada de esto implica un cambio funcional en el simulador.

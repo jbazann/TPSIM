@@ -1,9 +1,6 @@
 package modeloejemplo.eventos;
 
-import des.ContadoresEstadisticos;
-import des.EstadoDelSistema;
-import des.Evento;
-import des.ListaDeEventos;
+import des.*;
 import modeloejemplo.componentespropios.ContadoresEstadisticosEjemplo;
 import modeloejemplo.componentespropios.LibreriaDeRutinasEjemplo;
 import modeloejemplo.estadodelsistema.ModeloDelEjemplo;
@@ -17,8 +14,9 @@ public class EventoTerminaProcesamiento extends Evento {
 
 	@Override
 	public void rutinaDeEvento(EstadoDelSistema modelo, ContadoresEstadisticos contadores, ListaDeEventos eventos,
-			LibreriaDeRutinasEjemplo libreria) {
-		
+			LibreriaDeRutinas libreriaAbstract) {
+
+		LibreriaDeRutinasEjemplo libreria = (LibreriaDeRutinasEjemplo) libreriaAbstract;
 		ContadoresEstadisticosEjemplo contadoresEjemplo = (ContadoresEstadisticosEjemplo) contadores;
 		contadoresEjemplo.actualizarCantProcesadas();
 		
