@@ -1,6 +1,8 @@
 package modelotp.componentespropios;
 
-public class LibreriaDeRutinasTP {
+import des.LibreriaDeRutinas;
+
+public class LibreriaDeRutinasTP extends LibreriaDeRutinas{
 
     double x = 45;
     double a = 1664525;
@@ -18,12 +20,16 @@ public class LibreriaDeRutinasTP {
 
     /* calcula el tiempo entre arribo de los clientes */
     public double tiempoEntreArriboCliente() {
-        return -(1/lambdaEntreArribo) * Math.log(aleatorio());
+        double r = aleatorio();
+        System.out.println("\t\t--TIEMPO ENTRE ARRIBO con aleatorio:" + r);
+        return -(1/lambdaEntreArribo) * Math.log(r);
     }
 
     /* calcula el tipo de producto que llevara */
     public String tipoDeProducto() {
-        if (aleatorio() <= 0.7) {
+        double r = aleatorio();
+        System.out.println("\t\t--TIPO PRODUCTO con aleatorio:" + r);
+        if (r <= 0.7) {
             return "Bebida";
         } else {
             return "Panaderia";
@@ -33,6 +39,9 @@ public class LibreriaDeRutinasTP {
     /* calcula la cantidad de producto que llevara */
     public int cantidadProducto(String producto) {
         double r = aleatorio();
+
+        System.out.println("\t\t--CANTIDAD PRODUCTO con aleatorio:" + r);
+
         if (producto == "Bebida") {
             if (r <= 0.57) return 1;
             else if (r <= 0.9) return 2;
@@ -47,10 +56,13 @@ public class LibreriaDeRutinasTP {
 
     /* calcula el tiempo de servicio de la empleada */
     public double tiempoServicioEmpleada(String articulo, int cantidad) {
+        double r = aleatorio();
+        System.out.println("\t\t--TIEMPO SERVICIO con aleatorio:" + r);
+
         if (articulo == "Bebida") {
-            return -(1/lambdaServicioBebida) * Math.log(aleatorio());
+            return -(1/lambdaServicioBebida) * Math.log(r);
         } else {
-            return -(1/lambdaServicioPanaderia) * Math.log(aleatorio());
+            return -(1/lambdaServicioPanaderia) * Math.log(r);
         }
     }
 }

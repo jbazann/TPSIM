@@ -5,6 +5,11 @@ import modeloejemplo.componentespropios.GeneradorDeReportesEjemplo;
 import modeloejemplo.componentespropios.LibreriaDeRutinasEjemplo;
 import modeloejemplo.componentespropios.ListaDeEventosEjemplo;
 import modeloejemplo.estadodelsistema.ModeloDelEjemplo;
+import modelotp.componentespropios.ContadoresEstadisticosTP;
+import modelotp.componentespropios.GeneradorDeReportesTP;
+import modelotp.componentespropios.LibreriaDeRutinasTP;
+import modelotp.componentespropios.ListaDeEventosTP;
+import modelotp.estadodelsistema.ModeloKiosco;
 
 /* Subprograma que invoca a la Rutina de Tiempo para determinar evento inminente, 
  * transfiriendo el control a la Rutina de Evento asociada para que actualice el
@@ -59,18 +64,18 @@ public class ProgramaPrincipal {
 
 	private static void crearComponentesDependientes() {
 		//TODO Aca se crean los componentes propios del modelo a ejecutar.
-		modelo = new ModeloDelEjemplo();		
-		contadores = new ContadoresEstadisticosEjemplo();
-		reporte = new GeneradorDeReportesEjemplo();
-		libreria = new LibreriaDeRutinasEjemplo();
-		eventos = new ListaDeEventosEjemplo();
+		modelo = new ModeloKiosco();		
+		contadores = new ContadoresEstadisticosTP();
+		reporte = new GeneradorDeReportesTP();
+		libreria = new LibreriaDeRutinasTP();
+		eventos = new ListaDeEventosTP();
 	}
 
 	private static boolean terminoLaSimulacion(RelojDeSimulacion reloj, ContadoresEstadisticos contadores) {
 		//TODO Aca se debe programar según el fin sea por tiempo o cantidad.
 		
 		//Ejemplo por tiempo
-		int tiempoDeSimulacion = 10;
+		int tiempoDeSimulacion = 60;
 		if(reloj.getValor() >= tiempoDeSimulacion) return true;
 		return false;
 		

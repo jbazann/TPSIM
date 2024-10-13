@@ -14,14 +14,17 @@ public class ModeloKiosco extends EstadoDelSistema {
 
     /* encolar cliente */
     public void encolar(Cliente cliente) {
-        System.out.println("El modelo encola una solicitud.");
+        System.out.println("\t\tEl modelo encola una solicitud.");
         cola.encolarCliente(cliente);
     }
     /* desencolar cliente para atender */
     public Cliente desencolar() {
         return cola.desencolar();
     }
-
+    /* retornar TRUE si hay clientes en la cola, de lo contrario false */
+    public boolean tieneClientes() {
+        return (cola.cantidadDeClientesEnCola() > 0);
+    }
     /* ------------- */
 
     /* saber si hay alguna empleada desocupada */
@@ -32,7 +35,7 @@ public class ModeloKiosco extends EstadoDelSistema {
     /* empleada pasa a ocupada y atiende el cliente */
     public int atenderCliente(Cliente cliente) {
         int idEmpleada;
-        System.out.println("El modelo esta atendiendo un Cliente.");
+        System.out.println("\t\tEl modelo esta atendiendo un Cliente.");
         idEmpleada = empleadas.atenderCliente(cliente);
         return idEmpleada;
     }

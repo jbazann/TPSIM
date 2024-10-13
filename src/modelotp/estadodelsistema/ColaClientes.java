@@ -22,4 +22,9 @@ public class ColaClientes {
         c = colaCliente.remove();
         return c;
     }
+
+    /* cantidad de clientes esperando en la cola */
+    public int cantidadDeClientesEnCola() {
+        return colaCliente.size();
+    }
 }
