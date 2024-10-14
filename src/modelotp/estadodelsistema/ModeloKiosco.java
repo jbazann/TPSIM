@@ -7,7 +7,11 @@ public class ModeloKiosco extends EstadoDelSistema {
     private ColaClientes cola;
     private ListaEmpleadas empleadas;
 
-    public void inicializar () {
+    public static final String panaderia = "Panaderia";
+    public static final String bebida = "Bebida";
+
+
+    public void inicializar() {
         cola = new ColaClientes();
         empleadas = new ListaEmpleadas();
     }
@@ -17,10 +21,12 @@ public class ModeloKiosco extends EstadoDelSistema {
         System.out.println("\t\tEl modelo encola una solicitud.");
         cola.encolarCliente(cliente);
     }
+
     /* desencolar cliente para atender */
     public Cliente desencolar() {
         return cola.desencolar();
     }
+
     /* retornar TRUE si hay clientes en la cola, de lo contrario false */
     public boolean tieneClientes() {
         return (cola.cantidadDeClientesEnCola() > 0);
@@ -44,9 +50,6 @@ public class ModeloKiosco extends EstadoDelSistema {
     public void setEstadoDesocupada(int id) {
         empleadas.setEstadoDesocupada(id);
     }
-
-
-
 
 
 }

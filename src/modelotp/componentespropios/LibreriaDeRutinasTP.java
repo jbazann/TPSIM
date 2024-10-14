@@ -1,6 +1,7 @@
 package modelotp.componentespropios;
 
 import des.LibreriaDeRutinas;
+import modelotp.estadodelsistema.ModeloKiosco;
 
 public class LibreriaDeRutinasTP extends LibreriaDeRutinas{
 
@@ -30,9 +31,9 @@ public class LibreriaDeRutinasTP extends LibreriaDeRutinas{
         double r = aleatorio();
         System.out.println("\t\t--TIPO PRODUCTO con aleatorio:" + r);
         if (r <= 0.7) {
-            return "Bebida";
+            return ModeloKiosco.bebida;
         } else {
-            return "Panaderia";
+            return ModeloKiosco.panaderia;
         }
     }
 
@@ -42,7 +43,7 @@ public class LibreriaDeRutinasTP extends LibreriaDeRutinas{
 
         System.out.println("\t\t--CANTIDAD PRODUCTO con aleatorio:" + r);
 
-        if (producto.equals("Bebida")) {
+        if (producto.equals(ModeloKiosco.bebida)) {
             if (r <= 0.57) return 1;
             else if (r <= 0.9) return 2;
             else return 3;
@@ -59,7 +60,7 @@ public class LibreriaDeRutinasTP extends LibreriaDeRutinas{
         double r = aleatorio();
         System.out.println("\t\t--TIEMPO SERVICIO con aleatorio:" + r);
 
-        if (articulo.equals("Bebida")) {
+        if (articulo.equals(ModeloKiosco.bebida)) {
             return -(1/lambdaServicioBebida) * Math.log(r);
         } else {
             return -(1/lambdaServicioPanaderia) * Math.log(r);
