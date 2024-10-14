@@ -42,7 +42,7 @@ public class LibreriaDeRutinasTP extends LibreriaDeRutinas{
 
         System.out.println("\t\t--CANTIDAD PRODUCTO con aleatorio:" + r);
 
-        if (producto == "Bebida") {
+        if (producto.equals("Bebida")) {
             if (r <= 0.57) return 1;
             else if (r <= 0.9) return 2;
             else return 3;
@@ -59,7 +59,7 @@ public class LibreriaDeRutinasTP extends LibreriaDeRutinas{
         double r = aleatorio();
         System.out.println("\t\t--TIEMPO SERVICIO con aleatorio:" + r);
 
-        if (articulo == "Bebida") {
+        if (articulo.equals("Bebida")) {
             return -(1/lambdaServicioBebida) * Math.log(r);
         } else {
             return -(1/lambdaServicioPanaderia) * Math.log(r);
