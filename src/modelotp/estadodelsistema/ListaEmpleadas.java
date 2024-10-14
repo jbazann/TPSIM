@@ -21,17 +21,15 @@ public class ListaEmpleadas {
         return false; /* todas estan ocupadas */
     }
 
-    public int atenderCliente(Cliente cliente) {
-        int idEmpleada;
+    public Empleada atenderCliente(Cliente cliente) {
         for (Empleada empleada : listaEmpleadas) {
             if (!empleada.getEstado()) {
                 empleada.setEstado(true);
                 empleada.setClienteAtendido(cliente);
-                idEmpleada = empleada.getId();
-                return idEmpleada;
+                return empleada;
             }
         }
-        return -1; /* si hubo un error */
+        return null; /* si hubo un error */
     }
 
     public void setEstadoDesocupada(int id) {

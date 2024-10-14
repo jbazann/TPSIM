@@ -4,12 +4,15 @@ import des.ContadoresEstadisticos;
 import modelotp.estadodelsistema.ModeloKiosco;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ContadoresEstadisticosTP extends ContadoresEstadisticos {
 
     private final HashMap<Integer, Double> tiempoTotalOcupada = new HashMap<>();
     private final HashMap<String, Integer> unidadesVendidasPorProducto = new HashMap<>();
     private final HashMap<Integer, Integer> clientesAtendidosPorEmpleada = new HashMap<>();
+    private final LinkedList<Double> tiemposEnSistema = new LinkedList<>();
 
     public void inicializar() {
         for (int i = 0; i < ModeloKiosco.cantidadEmpleadas; i++) {
@@ -17,6 +20,10 @@ public class ContadoresEstadisticosTP extends ContadoresEstadisticos {
             clientesAtendidosPorEmpleada.put(i+1,0);
         }
         ModeloKiosco.productos.forEach(p -> unidadesVendidasPorProducto.put(p,0));
+    }
+
+    public void sumarTiempoEnSistem(double t_arr, double t_fin) {
+        tiemposEnSistema.add(t_fin - t_arr);
     }
 
     public void sumarTiempoOcupada(int idEmpleada, double tiempo) {
@@ -31,6 +38,9 @@ public class ContadoresEstadisticosTP extends ContadoresEstadisticos {
         clientesAtendidosPorEmpleada.merge(idEmpleada, 1, Integer::sum);// lo de arriba
     }
 
+    public List<Double> tiemposEnSistema() {
+        return tiemposEnSistema;
+    }
 
     public Double tiempoTotalOcupada(int idEmpleada) {
         return tiempoTotalOcupada.get(idEmpleada);

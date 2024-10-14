@@ -52,11 +52,11 @@ public class ModeloKiosco extends EstadoDelSistema {
     }
 
     /* empleada pasa a ocupada y atiende el cliente */
-    public int atenderCliente(Cliente cliente) {
-        int idEmpleada;
+    public Empleada atenderCliente(Cliente cliente) {
+        Empleada empleada;
         System.out.println("\t\tEl modelo esta atendiendo un Cliente.");
-        idEmpleada = empleadas.atenderCliente(cliente);
-        return idEmpleada;
+        empleada = empleadas.atenderCliente(cliente);
+        return empleada;
     }
 
     /* empleada pasa a desocupada */

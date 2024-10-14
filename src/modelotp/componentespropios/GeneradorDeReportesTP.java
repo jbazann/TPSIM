@@ -4,6 +4,8 @@ import des.ContadoresEstadisticos;
 import des.GeneradorDeReportes;
 import modelotp.estadodelsistema.ModeloKiosco;
 
+import java.util.List;
+
 import static modelotp.estadodelsistema.ModeloKiosco.reloj;
 
 public class GeneradorDeReportesTP extends GeneradorDeReportes {
@@ -31,6 +33,11 @@ public class GeneradorDeReportesTP extends GeneradorDeReportes {
         }
         System.out.println("Sobre "+ totalClientes + " clientes totales.");
         System.out.println("-------------------------------------------------------");
+
+        List<Double> tiempos = ((ContadoresEstadisticosTP) contadores).tiemposEnSistema();
+        System.out.println("Tiempo promedio de clientes en sistema: "+
+                tiempos.stream().reduce(Double::sum).get()/tiempos.size()+" minutos sobre "+tiempos.size() +" clientes atendidos.");
+
 
     }
 }

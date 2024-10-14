@@ -8,17 +8,20 @@ import des.ListaDeEventos;
 import modelotp.componentespropios.ContadoresEstadisticosTP;
 import modelotp.componentespropios.LibreriaDeRutinasTP;
 import modelotp.estadodelsistema.Cliente;
+import modelotp.estadodelsistema.Empleada;
 import modelotp.estadodelsistema.ModeloKiosco;
+
+import static modelotp.estadodelsistema.ModeloKiosco.reloj;
 
 public class EventoFinAtencion extends Evento {
 
-    private int idEmpleada;
+    private Empleada empleada;
     private String producto;
     private int cantidad;
 
-    public EventoFinAtencion(double tiempoOcurrencia, int empleada, String producto, int cantidad) {
+    public EventoFinAtencion(double tiempoOcurrencia, Empleada empleada, String producto, int cantidad) {
         super(tiempoOcurrencia);
-        this.idEmpleada = empleada;
+        this.empleada = empleada;
         this.producto = producto;
         this.cantidad = cantidad;
     }
@@ -30,22 +33,27 @@ public class EventoFinAtencion extends Evento {
         LibreriaDeRutinasTP rutinasTP = (LibreriaDeRutinasTP) libreria;
         ModeloKiosco modeloKiosco = (ModeloKiosco) modelo;
 
-        contadorTP.sumarClienteAtendido(idEmpleada);
+        contadorTP.sumarClienteAtendido(empleada.getId());
+        contadorTP.sumarTiempoEnSistem(empleada.getClienteAtendido().tiempoArribo, reloj.getValor());
         contadorTP.sumarUnidadesVendidas(producto, cantidad);
-        contadorTP.sumarTiempoOcupada(idEmpleada,getTiempoDeOcurrencia());
+        contadorTP.sumarTiempoOcupada(empleada.getId(),getTiempoDeOcurrencia());
+
+        // desocupar empleada
+        empleada.setEstado(false);
+        empleada.setClienteAtendido(null);
 
         if (modeloKiosco.tieneClientes()) {
 
             Cliente cliente = modeloKiosco.desencolar();
 
-            int idEmpleada = modeloKiosco.atenderCliente(cliente);
+            Empleada posiblementeOtraEmpleada = modeloKiosco.atenderCliente(cliente);
             String producto = rutinasTP.tipoDeProducto();
             int cantidad = rutinasTP.cantidadProducto(producto);
             double tiempoServicio = rutinasTP.tiempoServicioEmpleada(producto, cantidad);
-            EventoFinAtencion eventoFinAtencion = new EventoFinAtencion(tiempoServicio, idEmpleada, producto, cantidad);
+            EventoFinAtencion eventoFinAtencion = new EventoFinAtencion(tiempoServicio, posiblementeOtraEmpleada, producto, cantidad);
             listaDeEventos.agregar(eventoFinAtencion);
         } else {
-            modeloKiosco.setEstadoDesocupada(idEmpleada);
+            modeloKiosco.setEstadoDesocupada(empleada.getId());
         }
         
     }
