@@ -38,6 +38,15 @@ public class GeneradorDeReportesTP extends GeneradorDeReportes {
         System.out.println("Tiempo promedio de clientes en sistema: "+
                 tiempos.stream().reduce(Double::sum).get()/tiempos.size()+" minutos sobre "+tiempos.size() +" clientes atendidos.");
 
+        System.out.println("-------------------------------------------------------");
+
+        System.out.println("Porcentaje de tiempo libre por empleada:");
+        for (int i = 0; i < ModeloKiosco.cantidadEmpleadas; i++) {
+            int atendidos = contadoresTP.clientesAtendidosPorEmpleada(i+1);
+            totalClientes += atendidos;
+            double ocupada = contadoresTP.tiempoTotalOcupada(i+1);
+            System.out.println("Empleada "+(i+1)+" estuvo libre: "+ Math.round(((reloj.getValor()-ocupada)/reloj.getValor())*100) + "% del tiempo.");
+        }
 
     }
 }
