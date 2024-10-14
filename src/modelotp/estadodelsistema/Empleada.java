@@ -2,17 +2,15 @@ package modelotp.estadodelsistema;
 
 public class Empleada {
 
-    private static int contadorID = 0;
-
     private int id;
     private boolean estado; /* OCUPADO=true - DESOCUPADO=false */
     private Cliente clienteAtendido;
 
-    public Empleada() {
+    public Empleada(int id) {
         super();
         estado = false;
         clienteAtendido = null;
-        this.id = ++contadorID;
+        this.id = id;
     }
 
     public int getId() {

@@ -22,48 +22,56 @@ public class LibreriaDeRutinasTP extends LibreriaDeRutinas{
     /* calcula el tiempo entre arribo de los clientes */
     public double tiempoEntreArriboCliente() {
         double r = aleatorio();
-        System.out.println("\t\t--TIEMPO ENTRE ARRIBO con aleatorio:" + r);
-        return -(1/lambdaEntreArribo) * Math.log(r);
+        double t = -(1/lambdaEntreArribo) * Math.log(r);
+        System.out.println("\t\t--TIEMPO ENTRE ARRIBO con aleatorio:" + r + " ; " + t);
+        return t;
     }
 
     /* calcula el tipo de producto que llevara */
     public String tipoDeProducto() {
         double r = aleatorio();
-        System.out.println("\t\t--TIPO PRODUCTO con aleatorio:" + r);
+        String p = "";
+
         if (r <= 0.7) {
-            return ModeloKiosco.bebida;
+            p = ModeloKiosco.bebida;
         } else {
-            return ModeloKiosco.panaderia;
+            p = ModeloKiosco.panaderia;
         }
+        System.out.println("\t\t--TIPO PRODUCTO con aleatorio: " + r + " ; " + p);
+        return p;
     }
 
     /* calcula la cantidad de producto que llevara */
     public int cantidadProducto(String producto) {
         double r = aleatorio();
-
-        System.out.println("\t\t--CANTIDAD PRODUCTO con aleatorio:" + r);
+        int c = 0;
 
         if (producto.equals(ModeloKiosco.bebida)) {
-            if (r <= 0.57) return 1;
-            else if (r <= 0.9) return 2;
-            else return 3;
+            if (r <= 0.57) c = 1;
+            else if (r <= 0.9) c = 2;
+            else c = 3;
         } else {
-            if (r <= 0.27) return 1;
-            else if (r <= 0.52) return 2;
-            else if (r <= 0.87) return 3;
-            else return 4;
+            if (r <= 0.27) c = 1;
+            else if (r <= 0.52) c = 2;
+            else if (r <= 0.87) c = 3;
+            else c = 4;
         }
+        System.out.println("\t\t--CANTIDAD PRODUCTO con aleatorio: " + r + " ; " + c);
+        return c;
     }
 
     /* calcula el tiempo de servicio de la empleada */
     public double tiempoServicioEmpleada(String articulo, int cantidad) {
         double r = aleatorio();
-        System.out.println("\t\t--TIEMPO SERVICIO con aleatorio:" + r);
+        double t = 0d;
 
         if (articulo.equals(ModeloKiosco.bebida)) {
-            return -(1/lambdaServicioBebida) * Math.log(r);
+            t = -(1/lambdaServicioBebida) * Math.log(r);
         } else {
-            return -(1/lambdaServicioPanaderia) * Math.log(r);
+            t = -(1/lambdaServicioPanaderia) * Math.log(r);
         }
+
+        System.out.println("\t\t--TIEMPO SERVICIO con aleatorio: " + r + " ; " + t);
+        return t;
     }
 }

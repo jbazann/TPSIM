@@ -2,14 +2,22 @@ package modelotp.estadodelsistema;
 
 import des.EstadoDelSistema;
 
+import java.util.List;
+
 public class ModeloKiosco extends EstadoDelSistema {
 
     private ColaClientes cola;
     private ListaEmpleadas empleadas;
 
+    /* Constantes de configuración del modelo, ajeno a la estructura del simulador */
     public static final String panaderia = "Panaderia";
     public static final String bebida = "Bebida";
-
+    public static final List<String> productos = List.of(panaderia,bebida);
+    public static final int cantidadEmpleadas = 2;
+    public static final int costoBebida = 600;
+    public static final int costoPanaderia = 400;
+    public static final int precioBebida = 1200;
+    public static final int precioPanaderia = 850;
 
     public void inicializar() {
         cola = new ColaClientes();

@@ -13,10 +13,14 @@ import modelotp.estadodelsistema.ModeloKiosco;
 public class EventoFinAtencion extends Evento {
 
     private int idEmpleada;
+    private String producto;
+    private int cantidad;
 
-    public EventoFinAtencion(double tiempoOcurrencia, int empleada) {
+    public EventoFinAtencion(double tiempoOcurrencia, int empleada, String producto, int cantidad) {
         super(tiempoOcurrencia);
         this.idEmpleada = empleada;
+        this.producto = producto;
+        this.cantidad = cantidad;
     }
 
     @Override
@@ -26,6 +30,10 @@ public class EventoFinAtencion extends Evento {
         LibreriaDeRutinasTP rutinasTP = (LibreriaDeRutinasTP) libreria;
         ModeloKiosco modeloKiosco = (ModeloKiosco) modelo;
 
+        contadorTP.sumarClienteAtendido(idEmpleada);
+        contadorTP.sumarUnidadesVendidas(producto, cantidad);
+        contadorTP.sumarTiempoOcupada(idEmpleada,getTiempoDeOcurrencia());
+
         if (modeloKiosco.tieneClientes()) {
 
             Cliente cliente = modeloKiosco.desencolar();
@@ -34,7 +42,7 @@ public class EventoFinAtencion extends Evento {
             String producto = rutinasTP.tipoDeProducto();
             int cantidad = rutinasTP.cantidadProducto(producto);
             double tiempoServicio = rutinasTP.tiempoServicioEmpleada(producto, cantidad);
-            EventoFinAtencion eventoFinAtencion = new EventoFinAtencion(tiempoServicio, idEmpleada);
+            EventoFinAtencion eventoFinAtencion = new EventoFinAtencion(tiempoServicio, idEmpleada, producto, cantidad);
             listaDeEventos.agregar(eventoFinAtencion);
         } else {
             modeloKiosco.setEstadoDesocupada(idEmpleada);

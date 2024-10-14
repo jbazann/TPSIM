@@ -9,8 +9,8 @@ public class ListaEmpleadas {
         super();
         listaEmpleadas = new LinkedList<Empleada>();
 
-        for (int i = 0; i < 2; i++) {
-            listaEmpleadas.add(new Empleada());
+        for (int i = 0; i < ModeloKiosco.cantidadEmpleadas; i++) {
+            listaEmpleadas.add(new Empleada(i+1));
         }
     }
 

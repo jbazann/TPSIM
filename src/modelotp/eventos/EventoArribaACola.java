@@ -36,11 +36,11 @@ public class EventoArribaACola extends Evento {
         } else { /* si alguna empleadas esta desocupada se atiende el cliente */
         /* estadistica? */
             int id = modeloKiosco.atenderCliente(cliente);
-            
+
             String producto = rutinasTP.tipoDeProducto();
             int cantidad = rutinasTP.cantidadProducto(producto);
             double tiempoServicio = rutinasTP.tiempoServicioEmpleada(producto, cantidad);
-            EventoFinAtencion eventoFinAtencion = new EventoFinAtencion(tiempoServicio, id);
+            EventoFinAtencion eventoFinAtencion = new EventoFinAtencion(tiempoServicio, id, producto, cantidad);
             listaEventos.agregar(eventoFinAtencion);
         }
     }
