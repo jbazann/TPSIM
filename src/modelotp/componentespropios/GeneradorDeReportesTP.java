@@ -2,8 +2,9 @@ package modelotp.componentespropios;
 
 import des.ContadoresEstadisticos;
 import des.GeneradorDeReportes;
-import modelotp.estadodelsistema.Empleada;
 import modelotp.estadodelsistema.ModeloKiosco;
+
+import static modelotp.estadodelsistema.ModeloKiosco.reloj;
 
 public class GeneradorDeReportesTP extends GeneradorDeReportes {
     
@@ -26,7 +27,7 @@ public class GeneradorDeReportesTP extends GeneradorDeReportes {
         for (int i = 0; i < ModeloKiosco.cantidadEmpleadas; i++) {
             int atendidos = contadoresTP.clientesAtendidosPorEmpleada(i+1);
             totalClientes += atendidos;
-            System.out.println("Empleada "+ String.valueOf(i+1)+": "+ atendidos);// TODO falta dividir por tiempo total
+            System.out.println("Empleada "+(i+1)+": "+ atendidos/reloj.getValor()*60 + " clientes por hora.");
         }
         System.out.println("Sobre "+ totalClientes + " clientes totales.");
         System.out.println("-------------------------------------------------------");
