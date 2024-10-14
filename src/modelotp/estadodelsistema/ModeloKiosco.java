@@ -1,6 +1,7 @@
 package modelotp.estadodelsistema;
 
 import des.EstadoDelSistema;
+import des.RelojDeSimulacion;
 
 import java.util.List;
 
@@ -8,6 +9,10 @@ public class ModeloKiosco extends EstadoDelSistema {
 
     private ColaClientes cola;
     private ListaEmpleadas empleadas;
+
+    // Perdón
+    // Ver ListaDeEventosTP
+    public static RelojDeSimulacion reloj;
 
     /* Constantes de configuración del modelo, ajeno a la estructura del simulador */
     public static final String panaderia = "Panaderia";

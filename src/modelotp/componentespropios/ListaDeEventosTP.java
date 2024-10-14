@@ -6,6 +6,7 @@ import des.Evento;
 import des.LibreriaDeRutinas;
 import des.ListaDeEventos;
 import des.RelojDeSimulacion;
+import modelotp.estadodelsistema.ModeloKiosco;
 import modelotp.eventos.EventoArribaACola;
 
 public class ListaDeEventosTP extends ListaDeEventos {
@@ -15,5 +16,6 @@ public class ListaDeEventosTP extends ListaDeEventos {
         LibreriaDeRutinasTP rutina = (LibreriaDeRutinasTP) libreria;
         Evento primerEvento = new EventoArribaACola(rutina.tiempoEntreArriboCliente());
         agregar(primerEvento);
+        ModeloKiosco.reloj = reloj;
     }
 }
