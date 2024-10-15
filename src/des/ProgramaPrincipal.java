@@ -78,12 +78,12 @@ public class ProgramaPrincipal {
 		int tiempoDeSimulacion = 60*8;
 		if(reloj.getValor() >= tiempoDeSimulacion) return true;
 		return false;
-		
+
 		//Ejemplo por cantidad: "Que se hayan procesado 15 solicitudes."
-		/*ContadoresEstadisticosEjemplo contadorEjemplo = (ContadoresEstadisticosEjemplo) contadores;
-		int cantidadDeSimulacion = contadorEjemplo.getCantProcesadas(), topeDeSimulacion=15;
-		if(cantidadDeSimulacion >= topeDeSimulacion) return true;
-		return false;*/
+//		ContadoresEstadisticosTP contador = (ContadoresEstadisticosTP) contadores;
+//		int cantidadDeSimulacion = contador.tiemposEnSistema().size(), topeDeSimulacion=10;
+//		if(cantidadDeSimulacion >= topeDeSimulacion) return true;
+//		return false;
 		
 	}
 

@@ -40,7 +40,6 @@ public class GeneradorDeReportesTP extends GeneradorDeReportes {
 
         System.out.println("-------------------------------------------------------");
 
-        System.out.println();
         int sumaTotal = 0;
         List<Integer> numClientesEnColar = contadoresTP.getClientesEnCola();
         for (int i : numClientesEnColar) sumaTotal += i;
@@ -55,6 +54,6 @@ public class GeneradorDeReportesTP extends GeneradorDeReportes {
             double ocupada = contadoresTP.tiempoTotalOcupada(i+1);
             System.out.println("Empleada "+(i+1)+" estuvo libre: "+ Math.round(((reloj.getValor()-ocupada)/reloj.getValor())*100) + "% del tiempo.");
         }
-
+        System.out.println("-------------------------------------------------------");
     }
 }
