@@ -64,14 +64,19 @@ public class LibreriaDeRutinasTP extends LibreriaDeRutinas{
     public double tiempoServicioEmpleada(String articulo, int cantidad) {
         double r = aleatorio();
         double t = 0d;
+        double t_adicional = 0d;
 
         if (articulo.equals(ModeloKiosco.bebida)) {
             t = -(1/lambdaServicioBebida) * Math.log(r);
+            t_adicional = ((cantidad == 2) ? 0.1*t : ((cantidad == 3) ? 0.13*t : 0));
+            t += t_adicional; ;
         } else {
             t = -(1/lambdaServicioPanaderia) * Math.log(r);
+            t_adicional = ((cantidad == 2) ? 0.12*t : ((cantidad == 3) ? 0.15*t : ((cantidad == 4) ? 0.2*t : 0)));
+            t += t_adicional; ;
         }
 
-        System.out.println("\t\t--TIEMPO SERVICIO con aleatorio: " + r + " ; " + t);
+        System.out.println("\t\t--TIEMPO SERVICIO con aleatorio: " + r + " y adicional "+t_adicional +" por cantidad "+ cantidad+ " ; " + t);
         return t;
     }
 }
