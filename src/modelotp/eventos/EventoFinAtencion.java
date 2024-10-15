@@ -16,14 +16,10 @@ import static modelotp.estadodelsistema.ModeloKiosco.reloj;
 public class EventoFinAtencion extends Evento {
 
     private Empleada empleada;
-    private String producto;
-    private int cantidad;
 
-    public EventoFinAtencion(double tiempoOcurrencia, Empleada empleada, String producto, int cantidad) {
+    public EventoFinAtencion(double tiempoOcurrencia, Empleada empleada) {
         super(tiempoOcurrencia);
         this.empleada = empleada;
-        this.producto = producto;
-        this.cantidad = cantidad;
     }
 
     @Override
@@ -35,7 +31,7 @@ public class EventoFinAtencion extends Evento {
 
         contadorTP.sumarClienteAtendido(empleada.getId());
         contadorTP.sumarTiempoEnSistema(empleada.getClienteAtendido().tiempoDeArribo, reloj.getValor());
-        contadorTP.sumarUnidadesVendidas(producto, cantidad);
+        contadorTP.sumarUnidadesVendidas(empleada.getClienteAtendido().tipoServicio(), empleada.getClienteAtendido().unidades());
         contadorTP.sumarTiempoOcupada(empleada.getId(),reloj.getValor()-empleada.getTiempoInicioAtencion());
 
         // desocupar empleada
@@ -47,10 +43,8 @@ public class EventoFinAtencion extends Evento {
             contadorTP.agregarCantidadDeClientesEnCola(modeloKiosco.cantidadDeClientesEnCola());
 
             Empleada posiblementeOtraEmpleada = modeloKiosco.atenderCliente(cliente);
-            String producto = rutinasTP.tipoDeProducto();
-            int cantidad = rutinasTP.cantidadProducto(producto);
-            double tiempoServicio = rutinasTP.tiempoServicioEmpleada(producto, cantidad);
-            EventoFinAtencion eventoFinAtencion = new EventoFinAtencion(tiempoServicio, posiblementeOtraEmpleada, producto, cantidad);
+            double tiempoServicio = rutinasTP.tiempoServicioEmpleada(cliente.tipoServicio(), cliente.unidades());
+            EventoFinAtencion eventoFinAtencion = new EventoFinAtencion(tiempoServicio, posiblementeOtraEmpleada);
             listaDeEventos.agregar(eventoFinAtencion);
         }
         

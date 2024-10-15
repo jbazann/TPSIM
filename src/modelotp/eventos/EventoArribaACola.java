@@ -32,7 +32,7 @@ public class EventoArribaACola extends Evento {
         listaEventos.agregar(nuevoEventoArribo);
 
         /* procesar cliente actual */
-        Cliente cliente = new Cliente(reloj.getValor());
+        Cliente cliente = modeloKiosco.generarCliente(reloj.getValor(), rutinasTP);
 
         /* si todas las empleadas estan ocupadas se pone el cliente en la cola */
         if (!modeloKiosco.isDesocupada()) {
@@ -42,12 +42,9 @@ public class EventoArribaACola extends Evento {
             Empleada empleada = modeloKiosco.atenderCliente(cliente);
             contadoresTP.agregarCantidadDeClientesEnCola(0);// muestreo cola vacia
 
-            String producto = rutinasTP.tipoDeProducto();
-            int cantidad = rutinasTP.cantidadProducto(producto);
-            double tiempoServicio = rutinasTP.tiempoServicioEmpleada(producto, cantidad);
-            EventoFinAtencion eventoFinAtencion = new EventoFinAtencion(tiempoServicio, empleada, producto, cantidad);
+            double tiempoServicio = rutinasTP.tiempoServicioEmpleada(cliente.tipoServicio(), cliente.unidades());
+            EventoFinAtencion eventoFinAtencion = new EventoFinAtencion(tiempoServicio, empleada);
             listaEventos.agregar(eventoFinAtencion);
-
         }
     }
 }

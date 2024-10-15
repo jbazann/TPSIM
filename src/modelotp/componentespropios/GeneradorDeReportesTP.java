@@ -6,6 +6,8 @@ import modelotp.estadodelsistema.ModeloKiosco;
 
 import java.util.List;
 
+import static modelotp.estadodelsistema.ModeloKiosco.Servicios.BEBIDA;
+import static modelotp.estadodelsistema.ModeloKiosco.Servicios.PANADERIA;
 import static modelotp.estadodelsistema.ModeloKiosco.reloj;
 
 public class GeneradorDeReportesTP extends GeneradorDeReportes {
@@ -18,10 +20,10 @@ public class GeneradorDeReportesTP extends GeneradorDeReportes {
         System.out.println("------------------------------------------------------");
 
         System.out.println("Beneficios obtenidos: $" + String.valueOf(
-                contadoresTP.unidadesVendidasPorProducto(ModeloKiosco.panaderia) * (ModeloKiosco.precioPanaderia - ModeloKiosco.costoPanaderia)
-                + contadoresTP.unidadesVendidasPorProducto(ModeloKiosco.bebida) * (ModeloKiosco.precioPanaderia - ModeloKiosco.costoBebida)
-                + " por " + contadoresTP.unidadesVendidasPorProducto(ModeloKiosco.panaderia) + ' ' + ModeloKiosco.panaderia
-                + " y " + contadoresTP.unidadesVendidasPorProducto(ModeloKiosco.bebida) + ' ' + ModeloKiosco.bebida
+                contadoresTP.unidadesVendidasPorProducto(PANADERIA) * (ModeloKiosco.precioPanaderia - ModeloKiosco.costoPanaderia)
+                + contadoresTP.unidadesVendidasPorProducto(BEBIDA) * (ModeloKiosco.precioPanaderia - ModeloKiosco.costoBebida)
+                + " por " + contadoresTP.unidadesVendidasPorProducto(PANADERIA) + ' ' + PANADERIA
+                + " y " + contadoresTP.unidadesVendidasPorProducto(BEBIDA) + ' ' + BEBIDA
         ));
         System.out.println("------------------------------------------------------");
         System.out.println("Tasa de atención por empleada:");

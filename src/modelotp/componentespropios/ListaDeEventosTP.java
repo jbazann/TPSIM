@@ -16,6 +16,6 @@ public class ListaDeEventosTP extends ListaDeEventos {
         LibreriaDeRutinasTP rutina = (LibreriaDeRutinasTP) libreria;
         Evento primerEvento = new EventoArribaACola(rutina.tiempoEntreArriboCliente());
         agregar(primerEvento);
-        ModeloKiosco.reloj = reloj;
+        ModeloKiosco.reloj = reloj;//xd
     }
 }

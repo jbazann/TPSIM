@@ -3,6 +3,9 @@ package modelotp.componentespropios;
 import des.LibreriaDeRutinas;
 import modelotp.estadodelsistema.ModeloKiosco;
 
+import static modelotp.estadodelsistema.ModeloKiosco.Servicios.BEBIDA;
+import static modelotp.estadodelsistema.ModeloKiosco.Servicios.PANADERIA;
+
 public class LibreriaDeRutinasTP extends LibreriaDeRutinas{
 
     double x = 45;
@@ -28,25 +31,25 @@ public class LibreriaDeRutinasTP extends LibreriaDeRutinas{
     }
 
     /* calcula el tipo de producto que llevara */
-    public String tipoDeProducto() {
+    public ModeloKiosco.Servicios tipoDeProducto() {
         double r = aleatorio();
-        String p = "";
+        ModeloKiosco.Servicios p;
 
         if (r <= 0.7) {
-            p = ModeloKiosco.bebida;
+            p = BEBIDA;
         } else {
-            p = ModeloKiosco.panaderia;
+            p = PANADERIA;
         }
         System.out.println("\t\t--TIPO PRODUCTO con aleatorio: " + r + " ; " + p);
         return p;
     }
 
     /* calcula la cantidad de producto que llevara */
-    public int cantidadProducto(String producto) {
+    public int cantidadProducto(ModeloKiosco.Servicios producto) {
         double r = aleatorio();
         int c = 0;
 
-        if (producto.equals(ModeloKiosco.bebida)) {
+        if (producto.equals(BEBIDA)) {
             if (r <= 0.57) c = 1;
             else if (r <= 0.9) c = 2;
             else c = 3;
@@ -61,12 +64,12 @@ public class LibreriaDeRutinasTP extends LibreriaDeRutinas{
     }
 
     /* calcula el tiempo de servicio de la empleada */
-    public double tiempoServicioEmpleada(String articulo, int cantidad) {
+    public double tiempoServicioEmpleada(ModeloKiosco.Servicios articulo, int cantidad) {
         double r = aleatorio();
         double t = 0d;
         double t_adicional = 0d;
 
-        if (articulo.equals(ModeloKiosco.bebida)) {
+        if (articulo.equals(BEBIDA)) {
             t = -(1/lambdaServicioBebida) * Math.log(r);
             t_adicional = ((cantidad == 2) ? 0.1*t : ((cantidad == 3) ? 0.13*t : 0));
             t += t_adicional; ;

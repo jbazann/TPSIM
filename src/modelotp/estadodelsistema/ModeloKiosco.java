@@ -1,9 +1,14 @@
 package modelotp.estadodelsistema;
 
 import des.EstadoDelSistema;
+import des.LibreriaDeRutinas;
 import des.RelojDeSimulacion;
+import modelotp.componentespropios.LibreriaDeRutinasTP;
 
 import java.util.List;
+
+import static modelotp.estadodelsistema.ModeloKiosco.Servicios.BEBIDA;
+import static modelotp.estadodelsistema.ModeloKiosco.Servicios.PANADERIA;
 
 public class ModeloKiosco extends EstadoDelSistema {
 
@@ -15,14 +20,28 @@ public class ModeloKiosco extends EstadoDelSistema {
     public static RelojDeSimulacion reloj;
 
     /* Constantes de configuración del modelo, ajeno a la estructura del simulador */
-    public static final String panaderia = "Panaderia";
-    public static final String bebida = "Bebida";
-    public static final List<String> productos = List.of(panaderia,bebida);
+    public static final List<Servicios> productos = List.of(PANADERIA,BEBIDA);
     public static final int cantidadEmpleadas = 2;
     public static final int costoBebida = 600;
     public static final int costoPanaderia = 400;
     public static final int precioBebida = 1200;
     public static final int precioPanaderia = 850;
+
+    public enum Servicios{
+        PANADERIA("Panadería"),
+        BEBIDA("Bebida");
+
+        private String str;
+
+        private Servicios(String string) {
+            this.str = string;
+        }
+
+        @Override
+        public String toString() {
+            return str;
+        }
+    }
 
     public void inicializar() {
         cola = new ColaClientes();
@@ -69,5 +88,10 @@ public class ModeloKiosco extends EstadoDelSistema {
         empleadas.setEstadoDesocupada(id);
     }
 
+    public Cliente generarCliente(double tiempoArribo, LibreriaDeRutinasTP libreria) {
+        Servicios tipo = libreria.tipoDeProducto();
+        int unidades = libreria.cantidadProducto(tipo);
+        return new Cliente(tiempoArribo, unidades, tipo);
+    }
 
 }

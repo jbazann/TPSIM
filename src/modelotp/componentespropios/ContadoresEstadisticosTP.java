@@ -11,7 +11,7 @@ import java.util.List;
 public class ContadoresEstadisticosTP extends ContadoresEstadisticos {
 
     private final HashMap<Integer, Double> tiempoTotalOcupada = new HashMap<>();
-    private final HashMap<String, Integer> unidadesVendidasPorProducto = new HashMap<>();
+    private final HashMap<ModeloKiosco.Servicios, Integer> unidadesVendidasPorProducto = new HashMap<>();
     private final HashMap<Integer, Integer> clientesAtendidosPorEmpleada = new HashMap<>();
     private final LinkedList<Double> tiemposEnSistema = new LinkedList<>();
     private final ArrayList<Integer> clientesEnCola = new ArrayList<>();
@@ -41,7 +41,7 @@ public class ContadoresEstadisticosTP extends ContadoresEstadisticos {
         tiempoTotalOcupada.merge(idEmpleada,tiempo,Double::sum);// suma tiempo al valor actual
     }
 
-    public void sumarUnidadesVendidas(String producto, int unidades) {
+    public void sumarUnidadesVendidas(ModeloKiosco.Servicios producto, int unidades) {
         unidadesVendidasPorProducto.merge(producto,unidades,Integer::sum);// suma unidades al valor actual
     }
 
@@ -57,7 +57,7 @@ public class ContadoresEstadisticosTP extends ContadoresEstadisticos {
         return tiempoTotalOcupada.get(idEmpleada);
     }
 
-    public Integer unidadesVendidasPorProducto(String producto) {
+    public Integer unidadesVendidasPorProducto(ModeloKiosco.Servicios producto) {
         return unidadesVendidasPorProducto.get(producto);
     }
 
