@@ -2,10 +2,19 @@ package modelotp.estadodelsistema;
 
 public class Cliente {
 
-    public final double tiempoArribo;
+    public double tiempoDeArribo;
 
-    public Cliente(double tiempoArribo) {
+    public Cliente(double tiempoDeArribo) {
         super();
-        this.tiempoArribo = tiempoArribo;
+        this.tiempoDeArribo = tiempoDeArribo;
     }
+
+    public double getTiempoDeArribo() {
+        return tiempoDeArribo;
+    }
+
+    public void setTiempoDeArribo(double tiempoDeArribo) {
+        this.tiempoDeArribo = tiempoDeArribo;
+    }
+
 }

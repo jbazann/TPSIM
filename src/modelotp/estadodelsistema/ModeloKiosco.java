@@ -29,6 +29,11 @@ public class ModeloKiosco extends EstadoDelSistema {
         empleadas = new ListaEmpleadas();
     }
 
+    /* empleada pasa a desocupada */
+    public int cantidadDeClientesEnCola() {
+        return cola.cantidadDeClientesEnCola();
+    }
+
     /* encolar cliente */
     public void encolar(Cliente cliente) {
         System.out.println("\t\tEl modelo encola una solicitud.");

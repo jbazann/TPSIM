@@ -40,6 +40,14 @@ public class GeneradorDeReportesTP extends GeneradorDeReportes {
 
         System.out.println("-------------------------------------------------------");
 
+        System.out.println();
+        int sumaTotal = 0;
+        List<Integer> numClientesEnColar = contadoresTP.getClientesEnCola();
+        for (int i : numClientesEnColar) sumaTotal += i;
+        System.out.println("Longitud promedio de cola: "+ sumaTotal/numClientesEnColar.size());
+
+        System.out.println("-------------------------------------------------------");
+
         System.out.println("Porcentaje de tiempo libre por empleada:");
         for (int i = 0; i < ModeloKiosco.cantidadEmpleadas; i++) {
             int atendidos = contadoresTP.clientesAtendidosPorEmpleada(i+1);

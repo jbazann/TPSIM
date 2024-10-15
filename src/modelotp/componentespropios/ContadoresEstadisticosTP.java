@@ -3,6 +3,7 @@ package modelotp.componentespropios;
 import des.ContadoresEstadisticos;
 import modelotp.estadodelsistema.ModeloKiosco;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,6 +14,7 @@ public class ContadoresEstadisticosTP extends ContadoresEstadisticos {
     private final HashMap<String, Integer> unidadesVendidasPorProducto = new HashMap<>();
     private final HashMap<Integer, Integer> clientesAtendidosPorEmpleada = new HashMap<>();
     private final LinkedList<Double> tiemposEnSistema = new LinkedList<>();
+    private final ArrayList<Integer> clientesEnCola = new ArrayList<>();
 
     public void inicializar() {
         for (int i = 0; i < ModeloKiosco.cantidadEmpleadas; i++) {
@@ -22,7 +24,16 @@ public class ContadoresEstadisticosTP extends ContadoresEstadisticos {
         ModeloKiosco.productos.forEach(p -> unidadesVendidasPorProducto.put(p,0));
     }
 
-    public void sumarTiempoEnSistem(double t_arr, double t_fin) {
+
+    public void agregarCantidadDeClientesEnCola(int cantidadClientes) {
+        clientesEnCola.add(cantidadClientes);
+    }
+
+    public ArrayList<Integer> getClientesEnCola() {
+        return this.clientesEnCola;
+    }
+
+    public void sumarTiempoEnSistema(double t_arr, double t_fin) {
         tiemposEnSistema.add(t_fin - t_arr);
     }
 

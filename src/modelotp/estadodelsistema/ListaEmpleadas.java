@@ -2,6 +2,8 @@ package modelotp.estadodelsistema;
 
 import java.util.LinkedList;
 
+import static modelotp.estadodelsistema.ModeloKiosco.reloj;
+
 public class ListaEmpleadas {
     private LinkedList<Empleada> listaEmpleadas;
 
@@ -26,6 +28,7 @@ public class ListaEmpleadas {
             if (!empleada.getEstado()) {
                 empleada.setEstado(true);
                 empleada.setClienteAtendido(cliente);
+                empleada.setTiempoInicioAtencion(reloj.getValor());
                 return empleada;
             }
         }
@@ -34,8 +37,11 @@ public class ListaEmpleadas {
 
     public void setEstadoDesocupada(int id) {
         for (Empleada empleada : listaEmpleadas) {
-            if (empleada.getId() == id) empleada.setEstado(false); 
-            break;
+            if (empleada.getId() == id) {
+                empleada.setEstado(false);
+                empleada.setClienteAtendido(null);
+                break;
+            }
         }
     }
 }
