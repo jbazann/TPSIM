@@ -59,5 +59,10 @@ public class ModeloKiosco extends EstadoDelSistema {
         empleadas.setEstadoDesocupada(id);
     }
 
+    /* empleada pasa a desocupada */
+    public int cantidadDeClientesEnCola() {
+        return cola.cantidadDeClientesEnCola();
+    }
+
 
 }

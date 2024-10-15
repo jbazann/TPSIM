@@ -8,23 +8,32 @@ import modeloejemplo.componentespropios.LibreriaDeRutinasEjemplo;
 
 public abstract class Evento {
 	
+	private double tiempoQueFaltaParaQueOcurra;
 	private double tiempoDeOcurrencia;
 	
-	public Evento(double tiempoDeOcurrencia) {
+	public Evento(double saltoDeTiempo) {
 		super();
-		this.setIntervaloDeOcurrencia(tiempoDeOcurrencia);
+		this.setTiempoQueFaltaParaQueOcurra(saltoDeTiempo);
 	}
 
 	public double getTiempoDeOcurrencia() {
 		return tiempoDeOcurrencia;
 	}
 	
+	public double getTiempoQueFaltaParaQueOcurra() {
+		return tiempoQueFaltaParaQueOcurra;
+	}
+
 	public void refreshTiempo(double elapsedTime) {
-		this.tiempoDeOcurrencia -= elapsedTime;	
+		this.tiempoQueFaltaParaQueOcurra -= elapsedTime;	
 	}
 	
-	private void setIntervaloDeOcurrencia(double tiempoDeOcurrencia) {
+	public void setTiempoDeOcurrencia(double tiempoDeOcurrencia) {
 		this.tiempoDeOcurrencia = tiempoDeOcurrencia;
+	}
+
+	private void setTiempoQueFaltaParaQueOcurra(double saltoDeTiempo) {
+		this.tiempoQueFaltaParaQueOcurra = saltoDeTiempo;
 	}
 	
 	/* Subprograma que actualiza el estado del sistema  cuando un tipo particular de evento tiene lugar. */

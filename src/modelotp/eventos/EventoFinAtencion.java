@@ -44,6 +44,8 @@ public class EventoFinAtencion extends Evento {
             double tiempoServicio = rutinasTP.tiempoServicioEmpleada(producto, cantidad);
             EventoFinAtencion eventoFinAtencion = new EventoFinAtencion(tiempoServicio, idEmpleada, producto, cantidad);
             listaDeEventos.agregar(eventoFinAtencion);
+
+            contadorTP.agregarTiempoDeClienteEnKiosco(getTiempoDeOcurrencia()-cliente.getTiempoDeArribo());
         } else {
             modeloKiosco.setEstadoDesocupada(idEmpleada);
         }

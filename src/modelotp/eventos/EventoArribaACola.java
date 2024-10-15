@@ -29,10 +29,13 @@ public class EventoArribaACola extends Evento {
 
         /* procesar cliente actual */
         Cliente cliente = new Cliente();
+        cliente.setTiempoDeArribo(getTiempoDeOcurrencia());
 
         /* si todas las empleadas estan ocupadas se pone el cliente en la cola */
         if (!modeloKiosco.isDesocupada()) {
             modeloKiosco.encolar(cliente);
+            contadoresTP.agregarCantidadDeClientesEnCola(modeloKiosco.cantidadDeClientesEnCola());
+
         } else { /* si alguna empleadas esta desocupada se atiende el cliente */
         /* estadistica? */
             int id = modeloKiosco.atenderCliente(cliente);
@@ -42,6 +45,9 @@ public class EventoArribaACola extends Evento {
             double tiempoServicio = rutinasTP.tiempoServicioEmpleada(producto, cantidad);
             EventoFinAtencion eventoFinAtencion = new EventoFinAtencion(tiempoServicio, id, producto, cantidad);
             listaEventos.agregar(eventoFinAtencion);
+
+            contadoresTP.agregarCantidadDeClientesEnCola(0);
+            contadoresTP.agregarTiempoDeClienteEnKiosco(tiempoServicio);
         }
     }
 }

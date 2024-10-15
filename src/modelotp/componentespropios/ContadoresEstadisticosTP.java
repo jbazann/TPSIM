@@ -3,6 +3,7 @@ package modelotp.componentespropios;
 import des.ContadoresEstadisticos;
 import modelotp.estadodelsistema.ModeloKiosco;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ContadoresEstadisticosTP extends ContadoresEstadisticos {
@@ -10,6 +11,8 @@ public class ContadoresEstadisticosTP extends ContadoresEstadisticos {
     private final HashMap<Integer, Double> tiempoTotalOcupada = new HashMap<>();
     private final HashMap<String, Integer> unidadesVendidasPorProducto = new HashMap<>();
     private final HashMap<Integer, Integer> clientesAtendidosPorEmpleada = new HashMap<>();
+    private final ArrayList<Integer> clientesEnCola = new ArrayList<>();
+    private final ArrayList<Double> tiempoDeClienteEnKiosco = new ArrayList<>();
 
     public void inicializar() {
         for (int i = 0; i < ModeloKiosco.cantidadEmpleadas; i++) {
@@ -42,6 +45,22 @@ public class ContadoresEstadisticosTP extends ContadoresEstadisticos {
 
     public Integer clientesAtendidosPorEmpleada(int idEmpleada) {
         return clientesAtendidosPorEmpleada.get(idEmpleada);
+    }
+
+    public void agregarCantidadDeClientesEnCola(int cantidadClientes) {
+        clientesEnCola.add(cantidadClientes);
+    }
+
+    public void agregarTiempoDeClienteEnKiosco(double cantidadDeTiempo) {
+        tiempoDeClienteEnKiosco.add(cantidadDeTiempo);
+    }
+
+    public ArrayList<Integer> getClientesEnCola() {
+        return this.clientesEnCola;
+    }
+
+    public ArrayList<Double> getTiempoDeClienteEnKiosco() {
+        return this.tiempoDeClienteEnKiosco;
     }
 
 }

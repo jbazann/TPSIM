@@ -44,7 +44,7 @@ public abstract class ListaDeEventos {
 	}
 
 	public void agregar(Evento nuevoEvento) { 
-		System.out.println("\t\t-- El MODELO pide al SIMULADOR agregar un EVENTO a la LISTA DE EVENTOS " + nuevoEvento.getClass().getSimpleName() + " el cual tendrá lugar en " + nuevoEvento.getTiempoDeOcurrencia());
+		System.out.println("\t\t-- El MODELO pide al SIMULADOR agregar un EVENTO a la LISTA DE EVENTOS " + nuevoEvento.getClass().getSimpleName() + " el cual tendrá lugar en " + nuevoEvento.getTiempoQueFaltaParaQueOcurra());
 		lista.add(nuevoEvento);
 	}
 

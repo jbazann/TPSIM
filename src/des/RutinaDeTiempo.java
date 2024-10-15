@@ -15,7 +15,8 @@ public class RutinaDeTiempo {
 		Evento e = eventos.obtenerMasInminente();
 		
 		//Actualizar el reloj al tiempo de e.
-		reloj.actualizar(e.getTiempoDeOcurrencia());
+		reloj.actualizar(e.getTiempoQueFaltaParaQueOcurra());
+		e.setTiempoDeOcurrencia(reloj.getValor());
 		
 		return e;
 				
